@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="650.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.r1zen.findip.view.MainScreenController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <children>
+      <AnchorPane>
+         <children>
+            <HBox maxWidth="1.7976931348623157E308" prefHeight="26.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="153.0" text="Файл базы данных:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="dbPath" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="384.0" promptText="Файл, в котором хранятся диапазоны IP-адресов">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#selectDbPath" prefHeight="30.0" prefWidth="63.0" text="Выбрать" />
+               </children>
+            </HBox>
+            <HBox layoutY="39.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="153.0" text="Файл запроса:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="requestPath" prefHeight="29.0" prefWidth="384.0" promptText="Файл запроса или один IP-адрес">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#selectRequestPath" prefHeight="30.0" prefWidth="63.0" text="Выбрать" />
+               </children>
+            </HBox>
+            <HBox layoutY="78.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="153.0" text="Файл результата:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="resultPath" prefHeight="26.0" prefWidth="384.0" promptText="Файл, в который будет записан результат">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#selectResultPath" prefHeight="30.0" prefWidth="63.0" text="Выбрать" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <ButtonBar prefHeight="40.0" prefWidth="382.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#handleRequestClick" text="Обработать запрос" ButtonBar.buttonData="LEFT" />
+           <Button mnemonicParsing="false" onAction="#openResultFile" text="Показать результат" ButtonBar.buttonData="LEFT" />
+           <Button mnemonicParsing="false" onAction="#clearLog" text="Очистить лог" ButtonBar.buttonData="RIGHT" />
+        </buttons>
+      </ButtonBar>
+      <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="4.0" prefWidth="570.0" progress="0.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ProgressBar>
+      <SplitPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="VERTICAL" prefHeight="212.0" prefWidth="570.0">
+        <items>
+            <Accordion fx:id="accordion">
+              <panes>
+                <TitledPane animated="false" text="Сообщения">
+                     <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ListView fx:id="messagesArea" prefHeight="125.0" prefWidth="568.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+                <TitledPane animated="false" text="Ошибки">
+                     <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ListView fx:id="errorsArea" prefHeight="75.0" prefWidth="568.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </TitledPane>
+              </panes>
+            </Accordion>
+        </items>
+      </SplitPane>
+   </children>
+</VBox>
